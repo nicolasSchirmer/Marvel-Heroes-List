@@ -4,6 +4,7 @@ package com.nschirmer.marvelheroes.adapters;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
 import com.nschirmer.marvelheroes.rest.models.Result;
 
 import com.nschirmer.marvelheroes.fragments.HeroListItemFragment;

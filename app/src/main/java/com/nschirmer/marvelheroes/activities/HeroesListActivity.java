@@ -11,10 +11,16 @@ import com.nschirmer.marvelheroes.R;
 import com.nschirmer.marvelheroes.rest.MarvelApiService;
 import com.nschirmer.marvelheroes.utils.ActivityUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HeroesListActivity extends AppCompatActivity {
 
+    private List<Result> results = new ArrayList<>();
+    private MarvelApiService marvelApiService;
+    private HeroesListAdapter heroesListAdapter;
+    private int offset = 0;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +28,17 @@ public class HeroesListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_heroes_list);
         ActivityUtils.setStrechActivity(this);
 
-        MarvelApiService marvelApiService = new MarvelApiService();
+        marvelApiService = new MarvelApiService();
 
-        marvelApiService.getCharacters( 0, new MarvelApiService.CharactersCallListener() {
+        viewPager = findViewById(R.id.herores_list_view_pager);
+        setUpViewPager();
+
+        getCharactersFromOfsset(offset);
+    }
+
+
+    private void getCharactersFromOfsset(int offset){
+        marvelApiService.getCharacters( offset, new MarvelApiService.CharactersCallListener() {
             @Override
             public void sucess(List<Result> results) {
                 populateList(results);
@@ -39,7 +53,14 @@ public class HeroesListActivity extends AppCompatActivity {
 
 
     private void populateList(List<Result> results){
-        ViewPager viewPager = findViewById(R.id.herores_list_view_pager);
+        this.results.addAll(results);
+        heroesListAdapter.notifyDataSetChanged();
+    }
+
+
+    private void setUpViewPager(){
+        heroesListAdapter = new HeroesListAdapter(getSupportFragmentManager(), results);
+        viewPager.setAdapter(heroesListAdapter);
 
         float density = getResources().getDisplayMetrics().density;
         int partialWidth = (int) (16 * density); // 16dp
@@ -52,7 +73,25 @@ public class HeroesListActivity extends AppCompatActivity {
 
         viewPager.setClipToPadding(false);
 
-        HeroesListAdapter heroesListAdapter = new HeroesListAdapter(getSupportFragmentManager(), results);
-        viewPager.setAdapter(heroesListAdapter);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if(position == results.size() -3){
+                    offset += 10;
+                    getCharactersFromOfsset(offset);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
+
 }

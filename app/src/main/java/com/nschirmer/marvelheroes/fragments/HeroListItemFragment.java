@@ -1,5 +1,6 @@
 package com.nschirmer.marvelheroes.fragments;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,10 +13,13 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
 import com.nschirmer.marvelheroes.R;
+import com.nschirmer.marvelheroes.activities.CharacterActivity;
 import com.nschirmer.marvelheroes.rest.models.Result;
 import com.nschirmer.marvelheroes.utils.Dictionary;
 
 public class HeroListItemFragment extends Fragment {
+
+    private String characterJSON;
 
     public static HeroListItemFragment newInstance(Result result){
         HeroListItemFragment heroListItemFragment = new HeroListItemFragment();
@@ -40,10 +44,13 @@ public class HeroListItemFragment extends Fragment {
 
         if(getArguments() != null){
             SimpleDraweeView photo = view.findViewById(R.id.hero_list_item_photo);
+            photo.setOnClickListener(onClickListener);
             TextView name = view.findViewById(R.id.hero_list_item_name);
+            name.setOnClickListener(onClickListener);
             TextView description = view.findViewById(R.id.hero_list_item_description);
+            description.setOnClickListener(onClickListener);
 
-            String characterJSON = getArguments().getString(Dictionary.CHATACYER_GSON);
+            characterJSON = getArguments().getString(Dictionary.CHATACYER_GSON);
             Result result = new Gson().fromJson(characterJSON, Result.class);
 
             photo.setImageURI(Uri.parse(result.getThumbnail().getPath()) + "." + result.getThumbnail().getExtension());
@@ -51,4 +58,12 @@ public class HeroListItemFragment extends Fragment {
             description.setText(result.getDescription());
         }
     }
+
+
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            getActivity().startActivity(new Intent(getContext(), CharacterActivity.class).putExtra(Dictionary.CHATACYER_GSON, characterJSON));
+        }
+    };
 }

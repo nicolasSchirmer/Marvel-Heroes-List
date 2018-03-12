@@ -1,7 +1,9 @@
-package com.nschirmer.marvelheroes;
+package com.nschirmer.marvelheroes.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.nschirmer.marvelheroes.R;
 
 public class HeroesListActivity extends AppCompatActivity {
 

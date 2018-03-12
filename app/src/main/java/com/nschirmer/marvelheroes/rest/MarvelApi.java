@@ -10,7 +10,6 @@ import retrofit2.http.Query;
 
 public interface MarvelApi {
 
-    String NAME = "name";
     String API_KEY = "apikey";
     String HASH = "hash";
     String TIMESTAMP = "ts";

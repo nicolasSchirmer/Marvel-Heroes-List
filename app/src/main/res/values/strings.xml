@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Marvel Heroes</string>
+
+    <string name="heroes_list_title">Heroes</string>
+
+    <string name="comics">Comics: %1$d</string>
+    <string name="series">Series: %1$d</string>
+    <string name="stories">Stories: %1$d</string>
+    <string name="events">Events: %1$d</string>
+</resources>

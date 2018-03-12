@@ -26,7 +26,7 @@
 
     <!-- splash theme without action bar -->
     <style name="SplashTheme" parent="AppTheme.FullScreen">
-        <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:windowBackground">@drawable/splash_screen</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@android:color/white</item>
         <item name="colorAccent">@color/colorPrimary</item>

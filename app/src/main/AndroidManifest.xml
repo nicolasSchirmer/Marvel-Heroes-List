@@ -25,7 +25,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.HeroesListActivity"/>
+        <activity android:name=".activities.HeroesListActivity"
+            android:theme="@style/AppTheme.TransparentStatusBar"/>
 
     </application>
 </manifest>

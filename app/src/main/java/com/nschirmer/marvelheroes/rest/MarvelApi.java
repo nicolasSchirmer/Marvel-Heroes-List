@@ -10,6 +10,8 @@ import retrofit2.http.Query;
 
 public interface MarvelApi {
 
+    String OFFSET = "offset";
+    String LIMIT = "limit";
     String API_KEY = "apikey";
     String HASH = "hash";
     String TIMESTAMP = "ts";
@@ -22,7 +24,11 @@ public interface MarvelApi {
             .build();
 
     @GET("characters")
-    Call<CharactersResult> getAllCharacters(@Query(TIMESTAMP) String timestamp, @Query(API_KEY) String apiKey, @Query(HASH) String hash);
+    Call<CharactersResult> getAllCharacters(@Query(TIMESTAMP) String timestamp,
+                                            @Query(API_KEY) String apiKey,
+                                            @Query(HASH) String hash,
+                                            @Query(LIMIT) int limit,
+                                            @Query(OFFSET) int offset);
 
 
 }

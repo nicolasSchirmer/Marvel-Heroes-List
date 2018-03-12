@@ -5,7 +5,7 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Character {
+public class Result {
 
     @SerializedName("id")
     @Expose
@@ -45,7 +45,7 @@ public class Character {
      * No args constructor for use in serialization
      * 
      */
-    public Character() {
+    public Result() {
     }
 
     /**
@@ -62,7 +62,7 @@ public class Character {
      * @param comics
      * @param modified
      */
-    public Character(Integer id, String name, String description, String modified, Thumbnail thumbnail, String resourceURI, Comics comics, Series series, Stories stories, Events events, List<Url> urls) {
+    public Result(Integer id, String name, String description, String modified, Thumbnail thumbnail, String resourceURI, Comics comics, Series series, Stories stories, Events events, List<Url> urls) {
         super();
         this.id = id;
         this.name = name;

@@ -19,9 +19,9 @@ public class Data {
     @SerializedName("count")
     @Expose
     private Integer count;
-    @SerializedName("characters")
+    @SerializedName("results")
     @Expose
-    private List<Character> characters = null;
+    private List<Result> results = null;
 
     /**
      * No args constructor for use in serialization
@@ -34,17 +34,17 @@ public class Data {
      * 
      * @param total
      * @param limit
-     * @param characters
+     * @param results
      * @param count
      * @param offset
      */
-    public Data(Integer offset, Integer limit, Integer total, Integer count, List<Character> characters) {
+    public Data(Integer offset, Integer limit, Integer total, Integer count, List<Result> results) {
         super();
         this.offset = offset;
         this.limit = limit;
         this.total = total;
         this.count = count;
-        this.characters = characters;
+        this.results = results;
     }
 
     public Integer getOffset() {
@@ -79,12 +79,12 @@ public class Data {
         this.count = count;
     }
 
-    public List<Character> getCharacters() {
-        return characters;
+    public List<Result> getResults() {
+        return results;
     }
 
-    public void setCharacters(List<Character> characters) {
-        this.characters = characters;
+    public void setResults(List<Result> results) {
+        this.results = results;
     }
 
 }
